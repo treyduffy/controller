@@ -80,40 +80,56 @@ class Controller
         return (in_array($method->name, $excls));
     }
 
-    /**
-     * Sanitize Method
-     *
-     * Change method name from camel case to snake case
-     * @return string
-     */
-    private function __sanitizeMethod($method)
-    {
-        return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $method));
-    }
+	/**
+	 * Is Magic Method
+	 *
+	 * Return true if the method is magical,
+	 * and should be left the FUCK alone
+	 *
+	 * @access private
+	 * @param $method
+	 * @return bool
+	 */
+	private function __isMagicMethod($method) {
+		return (in_array($method->name, ['__construct', '__destruct', '__call', '__callStatic', '__get', '__set', '__isset', '__unset', '__sleep', '__wakeup', '__toString', '__invoke', '__set_state', '__clone', '__debugInfo']));
+	}
 
-    /**
-     * Run Methods
-     *
-     * Run and convert each of the child class public methods
-     */
-    private function __runMethods()
-    {
-        foreach ($this->methods as $method) {
-            if ($this->__isControllerMethod($method) || $this->__isStaticMethod($method)) {
-                continue;
-            }
-            $this->data[$this->__sanitizeMethod($method->name)] = $this->{$method->name}();
-        }
-    }
+	/**
+	 * Sanitize Method
+	 *
+	 * Change method name from camel case to snake case
+	 * @return string
+	 */
+	private function __sanitizeMethod($method)
+	{
+		return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $method));
+	}
 
-    /**
-     * Returns Data
-     *
-     * Set the class methods to be run
-     * @return array
-     */
-    public function __getData()
-    {
-        return ($this->active ? $this->data : array());
-    }
+	/**
+	 * Run Methods
+	 *
+	 * Run and convert each of the child class public methods
+	 */
+	private function __runMethods()
+	{
+		foreach ($this->methods as $method) {
+			if ($this->__isControllerMethod($method) || $this->__isStaticMethod($method) || $this->__isMagicMethod( $method )) {
+				continue;
+			}
+			$this->data[$this->__sanitizeMethod($method->name)] = $this->{$method->name}();
+		}
+	}
+
+	/**
+	 * Returns Data
+	 *
+	 * Set the class methods to be run
+	 * @return array
+	 */
+	public function __getData()
+	{
+		return ($this->active ? $this->data : array());
+	}
+
+	public static function employ(){}
 }

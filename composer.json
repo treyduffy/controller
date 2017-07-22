@@ -1,21 +1,26 @@
 {
-  "name": "soberwp/controller",
-  "type": "package",
+  "name": "treyduffy/controller",
+  "type": "wordpress-plugin",
   "license": "MIT",
-  "description": "WordPress package to enable a basic controller when using Blade with Sage 9",
-  "homepage": "https://github.com/soberwp",
+  "description": "WordPress package to enable a basic controller when using Blade with Sage 9, written by Darren Jacoby @darrenjacoby. Modified by Trey Duffy / Flightless Nerds for InSync Plus.",
+  "homepage": "https://github.com/treyduffy",
   "authors": [
     {
       "name": "Darren Jacoby",
       "email": "darren@jacoby.co.za",
       "homepage": "https://github.com/darrenjacoby"
+    },
+    {
+      "name": "Trey Duffy",
+      "email": "trey@flightlessnerds.com",
+      "homepage": "https://github.com/treyduffy"
     }
   ],
   "keywords": [
     "wordpress"
   ],
   "support": {
-    "issues": "https://github.com/soberwp/controller/issues"
+    "issues": "https://github.com/treyduffy/controller/issues"
   },
   "require": {
     "php": ">=5.6.0",

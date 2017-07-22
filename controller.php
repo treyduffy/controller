@@ -1,4 +1,16 @@
 <?php
+/*
+Plugin Name:        ISP Blade Controller
+Plugin URI:         https://github.com/treyduffy/insyncplus
+Description:        ISP Customized Blade Controller Plugin
+Version:            9.0.4
+Author:             Flightless Nerds | Darren Jacoby
+Author URI:         http://github.com/treyduffy/
+License:            MIT License
+License URI:        http://opensource.org/licenses/MIT
+GitHub Plugin URI:  treyduffy/controller
+GitHub Branch:      master
+*/
 
 namespace Sober\Controller;
 
@@ -9,6 +21,7 @@ function loader()
 {
     $loader = new Loader();
     foreach ($loader->getData() as $template => $class) {
+	    $class::employ();
         // Pass data filter
         add_filter('sage/template/' . $template . '-data/data', function ($data) use ($loader, $class) {
             $controller = new $class();
