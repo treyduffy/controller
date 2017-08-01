@@ -12,12 +12,12 @@ GitHub Plugin URI:  treyduffy/insyncplus
 GitHub Branch:      master
 */
 
-namespace Sober\Controller;
+namespace Sober;
 
 /**
  * Plugin
  */
-if (!defined('ABSPATH')) {
+if (!defined('ABSPATH') || class_exists("Sober\\Controller\\Controller", false) ) {
 	die;
 };
 
