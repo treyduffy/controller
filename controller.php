@@ -28,6 +28,7 @@ if ( function_exists( 'add_action' ) && !function_exists( "Sober\\loader" ) && !
 $require = file_exists( $composer = __DIR__ . '/vendor/autoload.php' ) ? $composer : __DIR__ . '/dist/autoload.php';
 require_once( $require );
 
+
 /**
  * Functions
  */
